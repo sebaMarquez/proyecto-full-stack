@@ -1,0 +1,22 @@
+body{
+  background-color: #03969B;
+}
+.img {
+  width: 20%;
+  height: 20%;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.detalle{
+  margin-left: 60px;
+  margin-top: 10px;
+
+}
+.detalle mark {
+  background: none;
+}
+.detalle section {
+  color: white;
+}
