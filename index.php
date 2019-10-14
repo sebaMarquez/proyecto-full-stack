@@ -1,9 +1,12 @@
 <?php
 require("register.php");
 
+
 $nombreDefault = "";
 $telefonoDefault = "";
 $emailDefault = "";
+
+
 
 if ($_POST){
 
@@ -277,10 +280,7 @@ if ($_POST){
               <label for="exampleInputEmail1">Nombre</label>
               <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresar nombre" name="nombre" required value="<?=$nombreDefault?>">
               <div class="">
-                            <?php if($_POST && isset($errores["name"])){
-                              echo '<h3 class="input--style-3">' . $errores["name"] . "</h3>";
-                            }
-                              ?>
+
             </div>
             </div>
             <div class="form-group">
