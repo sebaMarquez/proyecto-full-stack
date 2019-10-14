@@ -31,7 +31,18 @@ if ($_POST){
   if (isset($errores["email"])==false) {
   $emailDefault = $_POST["email"];
 }
+$nombre=$_POST["nombre"];
+$email=$_POST["email"];
+$password=$_POST["password"];
+$passwordcode=password_hash($password, PASSWORD_DEFAULT);
 
+$usuarios = [
+  "nombre" => $nombre,
+  "email" => $email,
+  "password"=>$passwordcode
+];
+$usuariosJson = json_encode($usuarios);
+$pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
 }
 ?>
 
