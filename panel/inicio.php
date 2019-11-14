@@ -42,7 +42,7 @@ if ($_POST){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Cabañas Oficial</title>
   </head>
@@ -55,7 +55,7 @@ if ($_POST){
       <div class="row">
         <div class="col-md-12">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.php">Cabañas</a>
+            <a class="navbar-brand" href="index0.php">Cabañas</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

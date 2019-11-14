@@ -1,6 +1,4 @@
-body{
-  background-color: #03969B;
-}
+
 .img {
   width: 20%;
   height: 20%;
@@ -11,7 +9,7 @@ body{
 }
 .detalle{
   margin-left: 60px;
-  margin-top: 10px;
+  margin-top: 30px;
 
 }
 .detalle mark {

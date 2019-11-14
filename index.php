@@ -16,7 +16,7 @@ if ($_POST){
   if(empty($errores)){
     //Registrar usuario.
     //Reenviar pág. de éxito.
-    header("Location:index0.php");exit;
+    header("Location:panel/inicio.php");exit;
   }
 
     // errores.
@@ -25,25 +25,25 @@ if ($_POST){
     }
 
     if(isset($errores["nombre"])==false){
-  $nombreDefault = $_POST["nombre"];
+    $nombreDefault = $_POST["nombre"];
+    }
+
+    if (isset($errores["email"])==false) {
+    $emailDefault = $_POST["email"];
   }
+  $nombre=$_POST["nombre"];
+  $email=$_POST["email"];
+  $password=$_POST["password"];
+  $passwordcode=password_hash($password, PASSWORD_DEFAULT);
 
-  if (isset($errores["email"])==false) {
-  $emailDefault = $_POST["email"];
-}
-$nombre=$_POST["nombre"];
-$email=$_POST["email"];
-$password=$_POST["password"];
-$passwordcode=password_hash($password, PASSWORD_DEFAULT);
-
-$usuarios = [
-  "nombre" => $nombre,
-  "email" => $email,
-  "password"=>$passwordcode
-];
-$usuariosJson = json_encode($usuarios);
-$pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
-}
+  $usuarios = [
+    "nombre" => $nombre,
+    "email" => $email,
+    "password"=>$passwordcode
+  ];
+  $usuariosJson = json_encode($usuarios);
+  $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
+  }
 ?>
 
 <!doctype html>
@@ -56,7 +56,8 @@ $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
 
     <title>Cabañas Oficial</title>
   </head>
@@ -64,7 +65,7 @@ $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
 
   <!-- MENU -->
 
-  <div class="container-fluid bg-light">
+  <div class="container-fluid bg-light fixed-top">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -78,25 +79,25 @@ $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
               <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Destacadas</a>
+                  <a class="nav-link" href="destacados.php">Destacadas</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Clientes</a>
+                  <a class="nav-link" href="#clientes">Clientes</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">FAQ</a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto</a>
+                  <a class="nav-link" href="#faq">FAQ</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link btn btn-success text-white" href="#" data-toggle="modal" data-target="#ingresar">Ingresar</a>
+                  <a class="nav-link" href="contacto.php">Contacto</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link btn btn-success text-white boton-ingresar" href="ingreso.php" >Ingresar</a>
                 </li>
 
               </ul>
@@ -109,11 +110,51 @@ $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
 
   <!-- PORTADA -->
 
-  <div class="container-fluid bg-dark pt-5 pb-5">
-    <div class="container">
+  <div class="container-fluid bg-dark " style="padding-left:0;padding-right:0">
+    <div>
       <div class="row">
         <div class="col-md-12 text-center">
-          <h1 class="text-white">Bienvenido a cabañas oficial</h1>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active" >
+                <img src="img/slider/2yz1ybgdngb21.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 class="text-uppercase">Bienvenidos</h1>
+                  <p>Un finde soñado</p>
+                  <a href="" class="btn btn-success boton-explorar">Explorar</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="img/slider/_mg_7691-editar.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 class="text-uppercase">Bienvenidos</h1>
+                  <p>Un finde soñado</p>
+                  <a href="" class="btn btn-success boton-explorar">Explorar</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="img/slider/lago-potrerillos.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h1 class="text-uppercase">Bienvenidos</h1>
+                  <p>Un finde soñado</p>
+                  <a href="" class="btn btn-success boton-explorar">Explorar</a>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -123,27 +164,38 @@ $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
 
   <div class="container-fluid pt-5 pb-5">
     <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <h2>Cabañas Destacadas</h2>
+        </div>
+      </div>
       <div class="row">
 
         <div class="col-md-4 text-center">
-          <img src="img/01.jpeg" alt="" class="img-fluid">
-          <h3>Cabaña 01</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ipsum impedit incidunt mollitia maiores voluptas, earum inventore eos, similique tempore.</p>
-          <a href="Detalles.html" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Detalles</a>
+          <div class="fondo">
+            <img src="img/01.jpeg" alt="" class="img-fluid">
+            <h4>Cabaña 01</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ipsum impedit incidunt mollitia maiores voluptas, earum inventore eos, similique tempore.</p>
+            <a href="detalles.php" class="btn btn-success btn-lg boton-detalle" role="button" aria-pressed="true">Detalles</a>
+          </div>
+        </div>
+
+        <div class="col-md-4 text-center ">
+          <div class="fondo">
+            <img src="img/02.jpeg" alt="" class="img-fluid">
+            <h4>Cabaña 02</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ipsum impedit incidunt mollitia maiores voluptas, earum inventore eos, similique tempore.</p>
+            <a href="detalles.php" class="btn btn-success btn-lg boton-detalle" role="button" aria-pressed="true">Detalles</a>
+          </div>
         </div>
 
         <div class="col-md-4 text-center">
-          <img src="img/02.jpeg" alt="" class="img-fluid">
-          <h3>Cabaña 02</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ipsum impedit incidunt mollitia maiores voluptas, earum inventore eos, similique tempore.</p>
-          <a href="Detalles.html" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Detalles</a>
-        </div>
-
-        <div class="col-md-4 text-center">
-          <img src="img/03.jpeg" alt="" class="img-fluid">
-          <h3>Cabaña 03</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ipsum impedit incidunt mollitia maiores voluptas, earum inventore eos, similique tempore.</p>
-          <a href="Detalles.html" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Detalles</a>
+          <div class="fondo">
+            <img src="img/03.jpeg" alt="" class="img-fluid">
+            <h4>Cabaña 03</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ipsum impedit incidunt mollitia maiores voluptas, earum inventore eos, similique tempore.</p>
+            <a href="detalles.php" class="btn btn-success btn-lg boton-detalle" role="button" aria-pressed="true">Detalles</a>
+          </div>
         </div>
 
       </div>
@@ -210,36 +262,39 @@ $pepe = file_put_contents("datosusuarios.json", $usuariosJson, FILE_APPEND);
   </div>
 
   <!-- CONTACTO -->
-  <div class="container-fluid pt-5 pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <form>
-            <div class="form-group">
-              <label for="">Nombre</label>
-              <input type="text" name="nombre" class="form-control" placeholder="Ingresar nombre" required>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Colocar email" required>
-            </div>
-            <div class="form-group">
-              <label for="">Consulta</label>
-              <textarea class="form-control" name="consulta" id="" cols="30" rows="10" required>
+  <div class="container-fluid  fondo-contacto" style="padding-left:0;padding-right:0">
+    <div class="container-fluid fondo-con-opacidad pt-5 pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <form>
+              <div class="form-group">
+                <label for="">Nombre</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Ingresar nombre" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Colocar email" required>
+              </div>
+              <div class="form-group">
+                <label for="">Consulta</label>
+                <textarea class="form-control" name="consulta" id="" cols="30" rows="10" required>
 
-              </textarea>
-            </div>
-            <button type="submit" class="btn btn-success boton-enviar">Enviar</button>
-          </form>
-        </div>
-        <div class="col-md-6 text-center">
-          <h3>Informacion de contacto</h3>
-          <p><i class="fa fa-envelope" aria-hidden="true"></i> Email: info@dominio.com</p>
-          <p><i class="fa fa-phone-square" aria-hidden="true"></i> Teléfono: 34534534</p>
-          <p><i class="fa fa-map-marker" aria-hidden="true"></i> Dirección: av.siempre viva </p>
+                </textarea>
+              </div>
+              <button type="submit" class="btn btn-success boton-enviar">Enviar</button>
+            </form>
+          </div>
+          <div class="col-md-6 text-center">
+            <h3>Informacion de contacto</h3>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> Email: info@dominio.com</p>
+            <p><i class="fa fa-phone-square" aria-hidden="true"></i> Teléfono: 34534534</p>
+            <p><i class="fa fa-map-marker" aria-hidden="true"></i> Dirección: av.siempre viva </p>
+          </div>
         </div>
       </div>
     </div>
+    
   </div>
 
   <!-- Modal Ingresar-->
